@@ -8,6 +8,7 @@ ApplicationWindow {
     title: qsTr("Drag and Drop Application")
 
     Rectangle{
+
         id: myShape
         width: 100
         height: 100
@@ -36,5 +37,21 @@ ApplicationWindow {
             anchors.fill: parent
             drag.target: parent
         }
+    }
+
+    Grid{
+        spacing: 2
+        rows: 3
+        columns: 3
+        anchors.centerIn: parent
+        MyShape{color: 'red'}
+        MyShape{color: 'orange'}
+        MyShape{color: 'yellow'}
+        MyShape{color: 'green'}
+        MyShape{color: 'blue'}
+        MyShape{color: 'indigo'}
+        MyShape{color: 'violet'}
+        MyShape{color: 'teal'}
+        MyShape{color: 'gold'}
     }
 }
