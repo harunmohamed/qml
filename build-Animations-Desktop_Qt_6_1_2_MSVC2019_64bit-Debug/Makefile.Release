@@ -172,6 +172,7 @@ release\qrc_qml.cpp: ..\Animations\qml.qrc \
 		..\Animations\SmoothedAnimation.qml \
 		..\Animations\AnimationsIntro.qml \
 		..\Animations\RotationAnimation.qml \
+		..\Animations\antiAliasing.qml \
 		..\Animations\ghost.jpg
 	C:\Qt\6.1.2\msvc2019_64\bin\rcc.exe -name qml ..\Animations\qml.qrc -o release\qrc_qml.cpp
 

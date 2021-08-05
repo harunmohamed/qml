@@ -6,6 +6,7 @@
         <file>AnimationsIntro.qml</file>
         <file>OpacityAnimator.qml</file>
         <file>SmoothedAnimation.qml</file>
+        <file>antiAliasing.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file>ghost.jpg</file>
