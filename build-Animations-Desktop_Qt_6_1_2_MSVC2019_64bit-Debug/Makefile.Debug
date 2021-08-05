@@ -169,6 +169,8 @@ debug\qrc_qml.cpp: ..\Animations\qml.qrc \
 		C:\Qt\6.1.2\msvc2019_64\bin\rcc.exe \
 		..\Animations\main.qml \
 		..\Animations\SequentialAnimation.qml \
+		..\Animations\OpacityAnimator.qml \
+		..\Animations\SmoothedAnimation.qml \
 		..\Animations\AnimationsIntro.qml \
 		..\Animations\RotationAnimation.qml \
 		..\Animations\ghost.jpg

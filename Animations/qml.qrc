@@ -5,6 +5,7 @@
         <file>SequentialAnimation.qml</file>
         <file>AnimationsIntro.qml</file>
         <file>OpacityAnimator.qml</file>
+        <file>SmoothedAnimation.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file>ghost.jpg</file>
