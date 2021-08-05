@@ -1,5 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>RotationAnimation.qml</file>
+        <file>SequentialAnimation.qml</file>
+        <file>AnimationsIntro.qml</file>
+        <file>OpacityAnimator.qml</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>ghost.jpg</file>
     </qresource>
 </RCC>
