@@ -8,35 +8,33 @@ Window {
     title: qsTr("Antialiasing demo")
     id: root
 
-    Row {
-        anchors.centerIn: parent
-        spacing: 20
+    Rectangle {
+        id: background
+        color: 'black'
+        anchors.fill: parent
+        focus: true
 
-        Rectangle {
-            width: 200
-            height: 200
-            border.color: 'red'
-            border.width: 20
-            radius: width
-
-            Text {
-                anchors.centerIn: parent
-                text: qsTr("Turned On")
-            }
+        Rectangle{
+            id: rect1
+            color: 'red'
+            anchors.centerIn: parent
+            width: 100
+            height: 100
         }
 
-        Rectangle {
-            width: 200
-            height: 200
-            border.color: 'red'
-            border.width: 20
-            radius: width
-            antialiasing: false
-
-            Text {
-                anchors.centerIn: parent
-                text: qsTr("Turned Off")
-            }
+        Rectangle{
+            id: outline
+            color: 'transparent'
+            anchors.centerIn: parent
+            width: 100
+            height: 100
+            border.color: 'yellow'
+            border.width: 5
         }
+
+        Keys.onUpPressed: rect1.height += 10
+        Keys.onDownPressed: rect1.height -= 10
+        Keys.onRightPressed: rect1.width += 10
+        Keys.onLeftPressed: rect1.width -= 10
     }
 }
