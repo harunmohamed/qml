@@ -7,6 +7,7 @@
         <file>OpacityAnimator.qml</file>
         <file>SmoothedAnimation.qml</file>
         <file>antiAliasing.qml</file>
+        <file>KeyboardInput.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file>ghost.jpg</file>
