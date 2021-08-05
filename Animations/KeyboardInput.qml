@@ -38,3 +38,4 @@ Window {
         Keys.onLeftPressed: rect1.width -= 10
     }
 }
+
