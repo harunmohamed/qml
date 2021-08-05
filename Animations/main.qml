@@ -5,84 +5,23 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Transfrom and Translate")
+    title: qsTr("Drag and Drop")
 
-    Item{
-        id: root
-        rotation: 0
+    Item {
         anchors.fill: parent
+        focus: true
 
-        Rectangle{
-            id: yellowRect
-            color: 'yellow'
-            width: 300
-            height: 300
-            radius: width
-            opacity: 0.5
-            border.width: 2
-            border.color: 'black'
-            anchors.centerIn: parent
-            transform: Translate {y: -100;}
-        }
-
-        Rectangle{
-            id: blueRect
-            color: 'blue'
-            width: 300
-            height: 300
-            radius: width
-            opacity: 0.5
-            border.width: 2
-            border.color: 'black'
-            anchors.centerIn: parent
-            transform: Translate {x: -100; y: 100;}
-        }
-
-        Rectangle{
-            id: redRect
+        Rectangle {
+            id: box
             color: 'red'
-            width: 300
-            height: 300
-            radius: width
-            opacity: 0.5
-            border.width: 2
-            border.color: 'black'
-            anchors.centerIn: parent
-            transform: Translate {x: 100; y: 100;}
-        }
-
-        Rectangle{
-            id: centerArea
-            color: 'white'
-            width: 50
-            height: 50
-            radius: width
-            opacity: 1
-            border.width: 2
-            border.color: 'black'
+            width: 100
+            height: 100
             anchors.centerIn: parent
         }
 
-        Rectangle{
-            id: centerCircle
-            color: 'gray'
-            width: 5
-            height: 5
-            radius: width
-            opacity: 1
-            border.width: 2
-            border.color: 'black'
-            anchors.centerIn: parent
-        }
-
-        RotationAnimator {
-            target: root
-            from: 360
-            to: 0
-            duration: 5000
-            direction: RotationAnimator.Counterclockwise
-            loops: Animation.Infinite
-            running: true
-        }
+        Keys.onUpPressed: box.y = box.y - 5
+        Keys.onDownPressed: box.y = box.y + 5
+        Keys.onLeftPressed: box.x = box.x - 5
+        Keys.onRightPressed: box.x = box.x + 5
     }
 }

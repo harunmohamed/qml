@@ -9,6 +9,8 @@
         <file>antiAliasing.qml</file>
         <file>KeyboardInput.qml</file>
         <file>transformTranslate.qml</file>
+        <file>dragDrop.qml</file>
+        <file>MovingRectangle.qml</file>
     </qresource>
     <qresource prefix="/images">
         <file>ghost.jpg</file>
