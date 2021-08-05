@@ -170,6 +170,7 @@ debug\qrc_qml.cpp: ..\Animations\qml.qrc \
 		..\Animations\dragDrop.qml \
 		..\Animations\SequentialAnimation.qml \
 		..\Animations\SmoothedAnimation.qml \
+		..\Animations\MovingRectangle.qml \
 		..\Animations\AnimationsIntro.qml \
 		..\Animations\RotationAnimation.qml \
 		..\Animations\main.qml \
