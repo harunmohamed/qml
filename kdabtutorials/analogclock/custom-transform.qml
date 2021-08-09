@@ -1,15 +1,33 @@
 import QtQuick 2.0
 
 Rectangle{
-    width: 400; height: 400; rotation: -45; scale: 1.5
+    width: 400; height: 300; color: 'lightblue'
 
-    gradient: Gradient{
-        GradientStop {position: 0.15; color: 'red'}
-        GradientStop {position: 0.3; color: 'orange'}
-        GradientStop {position: 0.45; color: 'yellow'}
-        GradientStop {position: 0.6; color: 'green'}
-        GradientStop {position: 0.75; color: 'blue'}
-        GradientStop {position: 0.9; color: 'indigo'}
-        GradientStop {position: 1.0; color: 'violet'}
+    Text {
+        text: 'Press Me!'
+        font.pixelSize: 48
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: 40
+        height: parent.height
+
+        MouseArea {
+            onPressed: parent.color = 'green'
+            onReleased: parent.color = 'black'
+            anchors.fill: parent
+        }
     }
+
+    Text{
+        text: 'Click Me'
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: parent.height / 2
+        height: parent.height / 2
+        font.pixelSize: 48
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: parent.font.bold = !parent.font.bold
+        }
+    }
+
 }
