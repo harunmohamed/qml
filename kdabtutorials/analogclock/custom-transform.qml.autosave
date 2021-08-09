@@ -12,7 +12,12 @@ Flickable {
         pinch.maximumScale: 1.0
         pinch.minimumScale: 0.1
         pinch.dragAxis: Pinch.XAndYAxis
-    }
+        
+        
+        
+        
+        
+        
 
     Image {
        width: flick.contentWidth
