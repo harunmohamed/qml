@@ -6,13 +6,17 @@ Rectangle {
 
     Image {
         id: rocket
-        anchors.centerIn: parent
         source: 'rocket.svg'
+        x: parent.width / 3
+        y: parent.height / 3
     }
     Keys.onPressed:
         if (event.key === Qt.Key_Left)
             rocket.rotation = (rocket.rotation - 10) % 360
         else if (event.key === Qt.Key_Right)
             rocket.rotation = (rocket.rotation + 10) % 360
-
+        else if(event.key === Qt.Key_Up)
+            rocket.y = rocket.y + 10
+        else if(event.key === Qt.Key_Down)
+            rocket.y = rocket.y - 10
 }
