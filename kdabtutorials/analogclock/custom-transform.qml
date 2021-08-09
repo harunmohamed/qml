@@ -4,19 +4,40 @@ Rectangle {
     width: 400; height: 400; color: '#00a3fc'
     focus: true
 
-    Image {
-        id: rocket
-        source: 'rocket.svg'
-        x: parent.width / 3
-        y: parent.height / 3
+    LineEdit{
+        id: lineEdit
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: 16
+        width: 300
+        height: 50
+        clip: true
     }
-    Keys.onPressed:
-        if (event.key === Qt.Key_Left)
-            rocket.rotation = (rocket.rotation - 10) % 360
-        else if (event.key === Qt.Key_Right)
-            rocket.rotation = (rocket.rotation + 10) % 360
-        else if(event.key === Qt.Key_Up)
-            rocket.y = rocket.y + 10
-        else if(event.key === Qt.Key_Down)
-            rocket.y = rocket.y - 10
+
+    Text {
+        anchors.top: lineEdit.bottom
+        anchors.topMargin: 12
+        anchors.left: parent.left
+        anchors.leftMargin: 16
+        text: '<b>Summary:</b> ' + lineEdit.text
+    }
+
+    Text {
+        id: clearButton
+        text: '<b>X</b>'
+        font.pixelSize: 40
+        opacity: lineEdit.text === "" ? 0.25 : 1.0
+        color: lineEdit.text === "" ? 'black' : 'darkred'
+        anchors {
+            right: parent.right
+            rightMargin: 10
+            verticalCenter: lineEdit.verticalCenter
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: lineEdit.text = ''
+        }
+    }
 }
+
+
