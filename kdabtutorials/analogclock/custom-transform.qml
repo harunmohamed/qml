@@ -9,7 +9,10 @@ Rectangle {
         anchors.centerIn: parent
         source: 'rocket.svg'
     }
-    Keys.onLeftPressed: rocket.rotation = (rocket.rotation -10) % 360
-    Keys.onRightPressed: rocket.rotation = (rocket.rotation + 10) % 360
+    Keys.onPressed:
+        if (event.key === Qt.Key_Left)
+            rocket.rotation = (rocket.rotation - 10) % 360
+        else if (event.key === Qt.Key_Right)
+            rocket.rotation = (rocket.rotation + 10) % 360
 
 }
