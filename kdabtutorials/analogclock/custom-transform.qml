@@ -2,28 +2,16 @@ import QtQuick 2.9
 
 Rectangle {
     width: 400; height: 400
-    color: 'lightblue'
+    color: '#000040'
 
-    Rectangle {
-        id: rect
-        x: 100
-        y: 100
-        width: 50
-        height: 50
-        color: 'red'
-
-        Behavior on x {
-            SpringAnimation {spring: 1; damping: 0.2}
-        }
-        Behavior on y {
-            SpringAnimation {spring: 1; damping: 0.2}
-        }
+    Image {
+        id: rocket
+        anchors.centerIn: parent
+        source: 'rocket.svg'
     }
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            rect.x = mouse.x - rect.width / 2
-            rect.y = mouse.y - rect.height / 2
-        }
+    SequentialAnimation {
+        NumberAnimation {target: rocket; properties: 'scale'; from: 1.0; to: 0.5; duration: 1000}
+        NumberAnimation {target: rocket; properties: 'opacity'; from: 1.0; to: 0.0; duration: 1000}
+        running: true
     }
 }
