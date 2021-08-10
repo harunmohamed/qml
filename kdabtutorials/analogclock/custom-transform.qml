@@ -4,18 +4,15 @@ Rectangle {
     width: 400; height: 400
     color: 'lightblue'
 
-    Rectangle {
-        id: rectangle1
-        x: 150; y: 150; width: 100; height: 100; color: 'green'
-    }
+    Image {
+        id: rocket
+        source: 'rocket.svg'
+        anchors.centerIn: parent
+        smooth: true
 
-    ColorAnimation {
-        target: rectangle1
-        property: 'color'
-        from: Qt.rgba(0,0.5,0,1)
-        to: Qt.rgba(1,1,1,1)
-        duration: 1200
-        running: true
+        RotationAnimation on rotation{
+            from: 45; to: 315; duration: 2000
+            direction: RotationAnimation.Shortest
+        }
     }
-
 }
