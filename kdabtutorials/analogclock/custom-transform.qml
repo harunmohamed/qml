@@ -5,16 +5,16 @@ Rectangle {
     color: 'lightblue'
 
     Rectangle {
-        y: 150; width: 100; height: 100;
-        color: 'green'
-        NumberAnimation on x {
-            from: 0
-            to: 150
-            duration: 1000
-        }
+        id: rect
+        x: 300; y: 300; width:100; height: 100
+    }
+    NumberAnimation {
+        target: rect
+        properties: 'x, y'
+        to: 150
+        duration: 1000
+        running: true
     }
 
 
 }
-
-
