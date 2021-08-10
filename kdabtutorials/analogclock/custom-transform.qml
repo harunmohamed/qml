@@ -1,43 +1,30 @@
-import QtQuick 2.7
+import QtQuick 2.9
 
 Rectangle {
-    width: 400; height: 400; color: '#00a3fc'
-    focus: true
+    id: root
+    width: cellCount * itemSize
+    height: cellCount * itemSize
+    border.color: 'black'
 
-    LineEdit{
-        id: lineEdit
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: 16
-        width: 300
-        height: 50
-        clip: true
+    property int cellCount: 4
+    property int itemSize: 80
+
+    Rectangle {
+        property int __row: 2
+        property int __col: 1
+
+        color: 'blue'
+        x: __col * root.itemSize
+        y: __row * root.itemSize
+        width: root.itemSize
+        height: root.itemSize
+        focus: true
+        Keys.onLeftPressed: __col = (__col + root.cellCount - 1) % root.cellCount
+        Keys.onRightPressed: __col = (__col + 1) % root.cellCount
+        Keys.onDownPressed: __row = (__row + 1) % root.cellCount
+        Keys.onUpPressed: __row = (__row + root.cellCount - 1) % root.cellCount
     }
 
-    Text {
-        anchors.top: lineEdit.bottom
-        anchors.topMargin: 12
-        anchors.left: parent.left
-        anchors.leftMargin: 16
-        text: '<b>Summary:</b> ' + lineEdit.text
-    }
-
-    Text {
-        id: clearButton
-        text: '<b>X</b>'
-        font.pixelSize: 40
-        opacity: lineEdit.text === "" ? 0.25 : 1.0
-        color: lineEdit.text === "" ? 'black' : 'darkred'
-        anchors {
-            right: parent.right
-            rightMargin: 10
-            verticalCenter: lineEdit.verticalCenter
-        }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: lineEdit.text = ''
-        }
-    }
 }
 
 

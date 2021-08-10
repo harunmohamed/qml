@@ -5,6 +5,8 @@ Rectangle {
     property alias text: textInput.text
     property int diameter: 8
 
+
+
     border.color: 'green'
     color: 'white'
     radius: diameter / 2
