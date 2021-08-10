@@ -11,6 +11,10 @@ Rectangle {
     }
     SequentialAnimation {
         NumberAnimation {target: rocket; properties: 'scale'; from: 1.0; to: 0.5; duration: 1000}
+
+        PauseAnimation {
+            duration: 200
+        }
         NumberAnimation {target: rocket; properties: 'opacity'; from: 1.0; to: 0.0; duration: 1000}
         running: true
     }
