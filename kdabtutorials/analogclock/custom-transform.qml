@@ -1,17 +1,35 @@
 import QtQuick 2.9
 
 Rectangle {
-    width: 400; height: 400
+    width: 200; height: 200
     color: '#000040'
 
-    Image {
-        id: rocket
+    Flipable {
+        id: flipable
         anchors.centerIn: parent
-        source: 'rocket.svg'
+        property bool flipped: false
+
+        front: Rectangle {
+            color: 'green'
+            width: 100; height: 100
+            anchors.centerIn: parent
+        }
+        back: Rectangle {
+            color: 'red'
+            width: 100; height: 100;
+            anchors.centerIn: parent
+        }
+        transform: Rotation {
+            axis.x: 1; axis.y: 0; axis.z: 0
+            angle: flipable.flipped ? 180 : 0
+
+            Behavior on angle {
+                NumberAnimation {duration: 300}
+            }
+        }
     }
-    ParallelAnimation {
-            NumberAnimation {target: rocket; properties: 'scale'; from: 1.0; to: 0.5; duration: 1000}
-            NumberAnimation {target: rocket; properties: 'opacity'; from: 1.0; to: 0.0; duration: 1000}
-        running: true
+    MouseArea {
+        anchors.fill: parent
+        onClicked: flipable.flipped = !flipable.flipped
     }
 }
