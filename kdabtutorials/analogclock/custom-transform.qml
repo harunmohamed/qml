@@ -28,6 +28,13 @@ Rectangle {
             }
         }
     }
+    Text {
+        text: flipable.side == Flipable.Front ? 'Front' : 'Back'
+        anchors {
+            bottom: parent.bottom
+        }
+        color: 'white'
+    }
     MouseArea {
         anchors.fill: parent
         onClicked: flipable.flipped = !flipable.flipped
