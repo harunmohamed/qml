@@ -1,42 +1,66 @@
 import QtQuick 2.9
 
 Rectangle {
-    width: 200; height: 200
-    color: '#000040'
+    width: 150; height: 360
+    color: "black"
 
-    Flipable {
-        id: flipable
-        anchors.centerIn: parent
-        property bool flipped: false
-
-        front: Rectangle {
-            color: 'green'
-            width: 100; height: 100
-            anchors.centerIn: parent
-        }
-        back: Rectangle {
-            color: 'red'
-            width: 100; height: 100;
-            anchors.centerIn: parent
-        }
-        transform: Rotation {
-            axis.x: 1; axis.y: 0; axis.z: 0
-            angle: flipable.flipped ? 180 : 0
-
-            Behavior on angle {
-                NumberAnimation {duration: 300}
-            }
-        }
+    Rectangle {
+        id: redLight
+        x: 25; y: 15; width: 100; height: 100
+        radius: 50
     }
-    Text {
-        text: flipable.side == Flipable.Front ? 'Front' : 'Back'
-        anchors {
-            bottom: parent.bottom
-        }
-        color: 'white'
+    Rectangle {
+        id: yellowLight
+        x: 25; y: 130; width: 100; height: 100
+        radius: 50
     }
-    MouseArea {
-        anchors.fill: parent
-        onClicked: flipable.flipped = !flipable.flipped
+    Rectangle {
+        id: greenLight
+        x: 25; y: 245; width: 100; height: 100
+        radius: 50
+    }
+    //~~~
+    //<-- setup
+    //--> states
+    states: [
+        State {
+            name: "stopState"
+            PropertyChanges { target: redLight; color: "red" }
+            PropertyChanges { target: yellowLight; color: "lightGray" }
+            PropertyChanges { target: greenLight; color: "lightGray" }
+        },
+        State {
+            name: "waitState"
+            PropertyChanges { target: redLight; color: "red" }
+            PropertyChanges { target: yellowLight; color: "yellow" }
+            PropertyChanges { target: greenLight; color: "lightGray" }
+        },
+        //~~~
+        //--> hide
+        State {
+            name: "driveState"
+            PropertyChanges { target: redLight; color: "lightGray" }
+            PropertyChanges { target: yellowLight; color: "lightGray" }
+            PropertyChanges { target: greenLight; color: "green" }
+        },
+        State {
+            name: "slowState"
+            PropertyChanges { target: redLight; color: "lightGray" }
+            PropertyChanges { target: yellowLight; color: "yellow" }
+            PropertyChanges { target: greenLight; color: "lightGray" }
+        }//<-- hide
+    ]
+    //<-- states
+    state: "stopState"
+
+    Timer {
+        interval: 1000
+        repeat: true
+        running: true
+        onTriggered: {
+            var states = ["stopState", "waitState", "driveState", "slowState"]
+            var nextIndex = ( states.indexOf(parent.state) + 1 ) % states.length
+            parent.state = states[nextIndex]
+        }
     }
 }
