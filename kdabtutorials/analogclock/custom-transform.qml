@@ -9,6 +9,11 @@ Rectangle {
 
         Rectangle {
             width: 70; height: 70; color: 'lightgreen'
+            Text {
+                anchors.centerIn: parent
+                text: model.index
+                font.pointSize: 30
+            }
         }
     }
 
