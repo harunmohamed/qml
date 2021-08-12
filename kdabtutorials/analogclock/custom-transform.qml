@@ -1,14 +1,19 @@
 import QtQuick 2.9
 
 
-Grid {
-    x: 15; y: 15; width: 300; height: 300
-    columns: 2; rows: 2; spacing: 20;
+Rectangle{
+    width: 420; height: 420; color: 'black';
 
-    property int dims: 125
+    Grid {
+        x: 5; y: 5; rows: 5; columns: 5; spacing: 15
 
-    Rectangle {width: dims;height: dims;color: 'red';}
-    Rectangle {width: dims;height: dims;color: 'green';}
-    Rectangle {width: dims;height: dims;color: 'silver';}
-    Rectangle {width: dims;height: dims;color: 'blue';}
+        Repeater {
+            model: 24
+            delegate: Rectangle {
+                width: 70
+                height: 70
+                color: 'lightgreen'
+            }
+        }
+    }
 }
