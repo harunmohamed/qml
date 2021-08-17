@@ -6,6 +6,7 @@ Rectangle {
     id: root
     Loader{id: loader; focus: true}
     Rectangle {
+
         id: centerandbottom
         //background image
         Image {
