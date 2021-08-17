@@ -1,7 +1,7 @@
 import QtQuick 2.9
 
 Rectangle {
-    width: 200; height: 200
+    width: 1600; height: 600
     color: 'black'
     id: root
 
