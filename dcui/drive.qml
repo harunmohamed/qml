@@ -5,6 +5,7 @@ Rectangle {
     color: '#000000'
     id: root
     Loader{id: loader; focus: true}
+    property bool alert: true
 
 
     //bg image
@@ -14,6 +15,20 @@ Rectangle {
         source: 'bg.png'
         width: root.width;
         y: 114
+    }
+
+    // popup component
+    Item {
+
+        Component {
+            id: popup
+
+            Image {
+                id: breaktime
+                source: "breaktime.png"
+                fillMode: Image.PreserveAspectFit
+            }
+        }
     }
 
 
@@ -111,6 +126,8 @@ Rectangle {
 
     Rectangle {
         id: centertab
+        // popup section
+        Loader {sourceComponent: popup; x: 112; y: 306;width: 396;height: 90; visible: alert ? true : false ;}
         Image {
             id: frame
             x: 644
@@ -161,3 +178,9 @@ Rectangle {
 
 
 }
+
+/*##^##
+Designer {
+    D{i:0;formeditorZoom:0.5}
+}
+##^##*/
