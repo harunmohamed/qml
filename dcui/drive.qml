@@ -10,7 +10,6 @@ Rectangle {
     FontLoader {id: textFont; source: "font/orbitron-light.ttf"}
 
     // properties
-    property int viewCanParking: 1
     property int viewCanTyrePressure: 1
 
     // background image
@@ -35,12 +34,13 @@ Rectangle {
             duration: 2000
             running: true
         }
+    }
 
-        function updatePopUp() {
-            if (viewCanTyrePressure == 1) {
-                popup.popUpIndicator = "images/tyre.png";popup.popUpTitle = "Tyre Pressure Warning";popup.popUpMessage = "Check Tyre Pressure";
-                viewCanTyrePressure = 0
-            }
+    // update popup function
+    function updatePopUp() {
+        if (viewCanTyrePressure == 1) {
+            popup.popUpIndicator = "images/tyre.png";popup.popUpTitle = "Tyre Pressure Warning";popup.popUpMessage = "Check Tyre Pressure";
+            viewCanTyrePressure = 0
         }
     }
 
