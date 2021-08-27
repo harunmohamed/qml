@@ -54,6 +54,7 @@ Rectangle {
      }
 
     PropertyAnimation {id: showPopUp; target: popupContainer; property: opacity; to: 1; duration: 500; easing.type: Easing.linear}
+    PropertyAnimation {id: hidePopUp; target: popupContainer; property: opacity; to: 0; duration: 500; easing.type: Easing.linear}
 
 
 }
