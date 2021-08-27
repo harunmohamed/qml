@@ -11,7 +11,7 @@ Rectangle {
         //background image
         Image {
             x: 0
-            source: 'bg.png'
+            source: 'images/bg.png'
             width: root.width;
             y: 114
 
@@ -20,7 +20,7 @@ Rectangle {
                 id: footonbrake
                 x: 755
                 y: 72
-                source: "footonbrake.png"
+                source: "images/footonbrake.png"
                 fillMode: Image.PreserveAspectFit
 
 
@@ -28,7 +28,7 @@ Rectangle {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        loader.source = 'drive.qml'
+                        loader.source = 'charging.qml'
                         top.visible = false
                         centerandbottom.visible = false
 
@@ -41,7 +41,7 @@ Rectangle {
                 id: ready
                 x: 38
                 y: 567
-                source: "ready.png"
+                source: "images/ready.png"
                 fillMode: Image.PreserveAspectFit
             }
 
@@ -51,7 +51,7 @@ Rectangle {
                 x: 871
                 y: 532
                 width: 120
-                source: "temp.png"
+                source: "images/temp.png"
                 fillMode: Image.PreserveAspectFit
             }
             // bottom right
@@ -60,7 +60,7 @@ Rectangle {
                 x: 1671
                 y: 544
                 width: 156
-                source: "distance.png"
+                source: "images/distance.png"
                 fillMode: Image.PreserveAspectFit
             }
         }
@@ -68,7 +68,7 @@ Rectangle {
 
     // top icons
     Rectangle {
-        id: top
+        id: topBar
         // top left: icons, time
         Rectangle {
             id: topleft
@@ -80,18 +80,18 @@ Rectangle {
                 // park signal
                 Image {
                     y: 5
-                   source: 'parksignal.png'
+                   source: 'images/parksignal.png'
                    width:40; height: 30
                 }
                 // cool image
                 Image {
-                   source: 'cool.png'
+                   source: 'images/cool.png'
                    width:50; height: 40
                 }
                 // time
                 Image {
                     x: 10
-                    source: '10am.png'
+                    source: 'images/10am.png'
                     width:100; height: 40
                 }
             }
@@ -102,7 +102,7 @@ Rectangle {
             id: center
             Image {
                 id: logo
-                source: 'logo.png'
+                source: 'images/logo.png'
                 width: 300
                 height: 25
                 x: (root.width - logo.width) / 2
@@ -118,7 +118,7 @@ Rectangle {
                 y: 10
                 width: 103
                 height: 65
-                source: "c.png"
+                source: "images/c.png"
                 fillMode: Image.PreserveAspectFit
 
                 Image {
@@ -127,7 +127,7 @@ Rectangle {
                     y: 22
                     width: 162
                     height: 35
-                    source: "battery.png"
+                    source: "images/battery.png"
                     fillMode: Image.PreserveAspectFit
                 }
             }
@@ -138,7 +138,7 @@ Rectangle {
                 y: 65
                 width: 139
                 height: 32
-                source: "105km.png"
+                source: "images/105km.png"
                 fillMode: Image.PreserveAspectFit
             }
         }
