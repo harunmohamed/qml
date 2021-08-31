@@ -5,10 +5,6 @@ Rectangle {
     color: '#000000'
     id: root
 
-    // font loader
-    FontLoader {id: titleFont; source: "font/orbitron-medium.ttf"}
-    FontLoader {id: textFont; source: "font/orbitron-light.ttf"}
-
     // properties
     property int viewCanTyrePressure: 1
 
@@ -26,19 +22,15 @@ Rectangle {
         popUpIndicator: updatePopUp()
         popUpTitle: updatePopUp()
         popUpMessage: updatePopUp()
-
-        OpacityAnimator {
-            target: popup
-            from: 0
-            to: 1
-            duration: 1500
-            running: true
-        }
+        SequentialAnimation {
+                NumberAnimation {target: popup; properties: 'opacity'; from: 0.0; to: 1.0; duration: 3000; easing.type: Easing.Linear}
+                NumberAnimation {target: popup; properties: 'opacity'; from: 1.0; to: 0.0; duration: 3000; easing.type: Easing.Linear}
+                running: true
+            }
     }
 
     // update popup function
     function updatePopUp() {
-        popup.opacity = 0;
         popup.border.color = 'transparent'
         if (viewCanTyrePressure == 1) {
             popup.popUpIndicator = "images/tyre.png";
