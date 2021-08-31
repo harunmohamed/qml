@@ -31,25 +31,20 @@ Rectangle {
             target: popup
             from: 0
             to: 1
-            duration: 2000
+            duration: 1500
             running: true
         }
     }
 
     // update popup function
     function updatePopUp() {
+        popup.opacity = 0;
+        popup.border.color = 'transparent'
         if (viewCanTyrePressure == 1) {
-            popup.popUpIndicator = "images/tyre.png";popup.popUpTitle = "Tyre Pressure Warning";popup.popUpMessage = "Check Tyre Pressure";
-            viewCanTyrePressure = 0
+            popup.popUpIndicator = "images/tyre.png";
+            popup.popUpTitle = "Tyre Pressure Warning";
+            popup.popUpMessage = "Check Tyre Pressure";
+            popup.border.color = '#cccccc'
         }
     }
-
-
-
 }
-
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:0.66}
-}
-##^##*/
