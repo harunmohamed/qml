@@ -7,11 +7,11 @@ Rectangle {
     id: root
 
     // properties
-    property int canTyrePressure: 1
+    property int canTyrePressure: 0
     property int canABSMalfunction: 0
     property int canTPMS: 0
     property int canServiceMode: 0
-    property int canFrontCollision: 0
+    property int canFrontCollision: 1
 
     // background image
     Image {

@@ -13,7 +13,7 @@ Rectangle {
 
     // font loader
     FontLoader {id: titleFont; source: "font/orbitron-medium.ttf"}
-    FontLoader {id: textFont; source: "font/orbitron-light.ttf"}
+    FontLoader {id: textFont; source: "font/futura-book-bt.ttf"}
 
     // properties
     property alias popUpIndicator : pindicator.source
@@ -37,7 +37,7 @@ Rectangle {
             color: '#cccccc'
             font.family: titleFont.name
             font.capitalization: Font.AllUppercase
-            font.pixelSize: 18
+            font.pixelSize: 17
             anchors.leftMargin: 125
             anchors.left: messages.left
         }
@@ -46,7 +46,7 @@ Rectangle {
             y: 40
             color: '#cccccc'
             font.family: textFont.name
-            font.pixelSize: 22
+            font.pixelSize: 18
             anchors.leftMargin: 125
             anchors.left: messages.left
         }
