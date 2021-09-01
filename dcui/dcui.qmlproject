@@ -1,6 +1,6 @@
 import QmlProject 1.0
 Project {
-    mainFile: 'popsmoke.qml'
+    mainFile: 'drive.qml'
 
 	QmlFiles {
 		directory: '.'
