@@ -1,5 +1,6 @@
 import QtQuick 2.9
 
+// popup container
 Rectangle {
     id: popupContainer
     border.color: '#cccccc'
@@ -15,12 +16,12 @@ Rectangle {
     FontLoader {id: titleFont; source: "font/orbitron-medium.ttf"}
     FontLoader {id: textFont; source: "font/futura-book-bt.ttf"}
 
-    // properties
+    // properties for popup component: image, title and message
     property alias popUpIndicator : pindicator.source
     property alias popUpTitle : ptitle.text
     property alias popUpMessage : pmessage.text
 
-
+    // popup image
     Image {
             id: pindicator
             x: 49
@@ -29,8 +30,10 @@ Rectangle {
             height: 66
             verticalAlignment: parent.verticalCenter
     }
+    // popup text contianer
     Rectangle {
         id: messages
+        // popup title
         Text {
             id: ptitle
             y: 15
@@ -41,6 +44,7 @@ Rectangle {
             anchors.leftMargin: 125
             anchors.left: messages.left
         }
+        // popup message
         Text {
             id: pmessage
             y: 40
@@ -52,12 +56,7 @@ Rectangle {
         }
 
      }
-        SequentialAnimation {
-                NumberAnimation {target: popupContainer; properties: 'opacity'; from: 0.0; to: 1.0; duration: 3000; easing.type: Easing.Linear}
-                NumberAnimation {target: popupContainer; properties: 'opacity'; from: 1.0; to: 0.0; duration: 3000; easing.type: Easing.Linear}
-                running: true
-        }
-    // states
+    // popup states
     states: [
         State {
             name: 'emptystate'
@@ -87,6 +86,16 @@ Rectangle {
             name: 'frontcollision'
             when: canFrontCollision == 1
             PropertyChanges{target: popupContainer; popUpIndicator: "images/frontcollision.png"; popUpTitle : "Front Collision Warning"; popUpMessage : "Front Collision Imminent: Slow Down";}
+        }
+    ]
+    // popup transitions
+    transitions: [
+        Transition {
+            SequentialAnimation {
+                NumberAnimation {target: popupContainer; properties: 'opacity'; from: 0.0; to: 1.0; duration: 2000; easing.type: Easing.Linear}
+                PauseAnimation {duration: 2000}
+                NumberAnimation {target: popupContainer; properties: 'opacity'; from: 1.0; to: 0.0; duration: 3000; easing.type: Easing.Linear}
+            }
         }
     ]
 }
