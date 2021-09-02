@@ -53,40 +53,40 @@ Rectangle {
 
      }
         SequentialAnimation {
-                NumberAnimation {target: popup; properties: 'opacity'; from: 0.0; to: 1.0; duration: 3000; easing.type: Easing.Linear}
-                NumberAnimation {target: popup; properties: 'opacity'; from: 1.0; to: 0.0; duration: 3000; easing.type: Easing.Linear}
+                NumberAnimation {target: popupContainer; properties: 'opacity'; from: 0.0; to: 1.0; duration: 3000; easing.type: Easing.Linear}
+                NumberAnimation {target: popupContainer; properties: 'opacity'; from: 1.0; to: 0.0; duration: 3000; easing.type: Easing.Linear}
                 running: true
         }
     // states
     states: [
         State {
             name: 'emptystate'
-            PropertyChanges{target: popup; border.color : 'transparent'}
+            PropertyChanges{target: popupContainer; border.color : 'transparent'}
         },
         State {
             name: 'tyrepressure'
             when: canTyrePressure == 1
-            PropertyChanges{target: popup; popUpIndicator: "images/tyre.png"; popUpTitle : "Tyre Pressure Warning"; popUpMessage : "Check Tyre Pressure";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/tyre.png"; popUpTitle : "Tyre Pressure Warning"; popUpMessage : "Check Tyre Pressure";}
         },
         State {
             name: 'absmalfunction'
             when: canABSMalfunction == 1
-            PropertyChanges{target: popup; popUpIndicator: "images/abs.png"; popUpTitle : "ABS Malfunction"; popUpMessage : "Braking System Failure";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/abs.png"; popUpTitle : "ABS Malfunction"; popUpMessage : "Braking System Failure";}
         },
         State {
             name: 'tpms'
             when: canTPMS == 1
-            PropertyChanges{target: popup; popUpIndicator: "images/tpms.png"; popUpTitle : "TPMS Malfunction"; popUpMessage : "Check TPM";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/tpms.png"; popUpTitle : "TPMS Malfunction"; popUpMessage : "Check TPM";}
         },
         State {
             name: 'servicemode'
             when: canServiceMode == 1
-            PropertyChanges{target: popup; popUpIndicator: "images/servicemode.png"; popUpTitle : "Service Mode Active"; popUpMessage : "Service mode has been activated";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/servicemode.png"; popUpTitle : "Service Mode Active"; popUpMessage : "Service mode has been activated";}
         },
         State {
             name: 'frontcollision'
             when: canFrontCollision == 1
-            PropertyChanges{target: popup; popUpIndicator: "images/frontcollision.png"; popUpTitle : "Front Collision Warning"; popUpMessage : "Front Collision Imminent: Slow Down";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/frontcollision.png"; popUpTitle : "Front Collision Warning"; popUpMessage : "Front Collision Imminent: Slow Down";}
         }
     ]
 }
