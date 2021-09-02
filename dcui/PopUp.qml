@@ -52,4 +52,36 @@ Rectangle {
         }
 
      }
+    // states
+    states: [
+        State {
+            name: 'emptystate'
+            PropertyChanges{target: popup; border.color : 'transparent'}
+        },
+        State {
+            name: 'tyrepressure'
+            when: canTyrePressure == 1
+            PropertyChanges{target: popup; popUpIndicator: "images/tyre.png"; popUpTitle : "Tyre Pressure Warning"; popUpMessage : "Check Tyre Pressure";}
+        },
+        State {
+            name: 'absmalfunction'
+            when: canABSMalfunction == 1
+            PropertyChanges{target: popup; popUpIndicator: "images/abs.png"; popUpTitle : "ABS Malfunction"; popUpMessage : "Braking System Failure";}
+        },
+        State {
+            name: 'tpms'
+            when: canTPMS == 1
+            PropertyChanges{target: popup; popUpIndicator: "images/tpms.png"; popUpTitle : "TPMS Malfunction"; popUpMessage : "Check TPM";}
+        },
+        State {
+            name: 'servicemode'
+            when: canServiceMode == 1
+            PropertyChanges{target: popup; popUpIndicator: "images/servicemode.png"; popUpTitle : "Service Mode Active"; popUpMessage : "Service mode has been activated";}
+        },
+        State {
+            name: 'frontcollision'
+            when: canFrontCollision == 1
+            PropertyChanges{target: popup; popUpIndicator: "images/frontcollision.png"; popUpTitle : "Front Collision Warning"; popUpMessage : "Front Collision Imminent: Slow Down";}
+        }
+    ]
 }

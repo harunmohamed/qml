@@ -9,9 +9,9 @@ Rectangle {
     // properties
     property int canTyrePressure: 0
     property int canABSMalfunction: 0
-    property int canTPMS: 0
+    property int canTPMS: 1
     property int canServiceMode: 0
-    property int canFrontCollision: 1
+    property int canFrontCollision: 0
 
     // background image
     Image {
@@ -23,7 +23,7 @@ Rectangle {
     }
 
      // add popup components into this item as they come
-     Item{
+      Loader{
          PopUp {
              id: popup
              state: 'emptystate'
@@ -34,37 +34,4 @@ Rectangle {
              }
          }
      }
-
-    // states
-    states: [
-        State {
-            name: 'emptystate'
-            PropertyChanges{target: popup; border.color : 'transparent'}
-        },
-        State {
-            name: 'tyrepressure'
-            when: canTyrePressure == 1
-            PropertyChanges{target: popup; popUpIndicator: "images/tyre.png"; popUpTitle : "Tyre Pressure Warning"; popUpMessage : "Check Tyre Pressure";}
-        },
-        State {
-            name: 'absmalfunction'
-            when: canABSMalfunction == 1
-            PropertyChanges{target: popup; popUpIndicator: "images/abs.png"; popUpTitle : "ABS Malfunction"; popUpMessage : "Braking System Failure";}
-        },
-        State {
-            name: 'tpms'
-            when: canTPMS == 1
-            PropertyChanges{target: popup; popUpIndicator: "images/tpms.png"; popUpTitle : "TPMS Malfunction"; popUpMessage : "Check TPM";}
-        },
-        State {
-            name: 'servicemode'
-            when: canServiceMode == 1
-            PropertyChanges{target: popup; popUpIndicator: "images/servicemode.png"; popUpTitle : "Service Mode Active"; popUpMessage : "Service Mode Activated";}
-        },
-        State {
-            name: 'frontcollision'
-            when: canFrontCollision == 1
-            PropertyChanges{target: popup; popUpIndicator: "images/frontcollision.png"; popUpTitle : "Front Collision Warning"; popUpMessage : "Slow Down";}
-        }
-    ]
 }
