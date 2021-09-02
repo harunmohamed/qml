@@ -52,6 +52,11 @@ Rectangle {
         }
 
      }
+        SequentialAnimation {
+                NumberAnimation {target: popup; properties: 'opacity'; from: 0.0; to: 1.0; duration: 3000; easing.type: Easing.Linear}
+                NumberAnimation {target: popup; properties: 'opacity'; from: 1.0; to: 0.0; duration: 3000; easing.type: Easing.Linear}
+                running: true
+        }
     // states
     states: [
         State {
