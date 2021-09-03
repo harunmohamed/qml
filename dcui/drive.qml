@@ -6,13 +6,6 @@ Rectangle {
     state: "emptystate"
     id: root
 
-    // properties
-    property int canTyrePressure: 1
-    property int canABSMalfunction: 0
-    property int canTPMS: 1
-    property int canServiceMode: 0
-    property int canFrontCollision: 1
-
     // background image
     Image {
         id: driveScreen
@@ -23,8 +16,9 @@ Rectangle {
     }
 
      // add popup components into this item as they come
-     PopUp {
-         id: popup
-         Loader {}
+     Loader {
+         id: loader
+         PopUp { id: popup }
+         onLoaded: {}
      }
 }

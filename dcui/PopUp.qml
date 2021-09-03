@@ -12,14 +12,22 @@ Rectangle {
     border.width: 2
     radius: 20
 
-    // font loader
-    FontLoader {id: titleFont; source: "font/orbitron-medium.ttf"}
-    FontLoader {id: textFont; source: "font/futura-book-bt.ttf"}
+    // properties for CAN signals
+    property int canTyrePressure: 1
+    property int canABSMalfunction: 0
+    property int canTPMS: 0
+    property int canServiceMode: 0
+    property int canFrontCollision: 1
 
     // properties for popup component: image, title and message
     property alias popUpIndicator : pindicator.source
     property alias popUpTitle : ptitle.text
     property alias popUpMessage : pmessage.text
+
+    // font loader
+    FontLoader {id: titleFont; source: "font/orbitron-medium.ttf"}
+    FontLoader {id: textFont; source: "font/futura-book-bt.ttf"}
+
 
     // popup image
     Image {
@@ -92,9 +100,9 @@ Rectangle {
     transitions: [
         Transition {
             SequentialAnimation {
-                NumberAnimation {target: popupContainer; properties: 'opacity'; from: 0.0; to: 1.0; duration: 2000; easing.type: Easing.Linear}
-                PauseAnimation {duration: 2000}
-                NumberAnimation {target: popupContainer; properties: 'opacity'; from: 1.0; to: 0.0; duration: 3000; easing.type: Easing.Linear}
+                NumberAnimation {target: popupContainer; properties: 'opacity'; from: 0.0; to: 1.0; duration: 2000; easing.type: Easing.InOutQuad}
+                PauseAnimation {duration: 1000}
+                NumberAnimation {target: popupContainer; properties: 'opacity'; from: 1.0; to: 0.0; duration: 2000; easing.type: Easing.InOutQuad}
             }
         }
     ]
