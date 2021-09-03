@@ -1,6 +1,6 @@
 import QmlProject 1.0
 Project {
-    mainFile: 'drive.qml'
+    mainFile: 'driveScreen.qml'
 
 	QmlFiles {
 		directory: '.'
