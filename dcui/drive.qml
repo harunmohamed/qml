@@ -19,6 +19,5 @@ Rectangle {
      Loader {
          id: loader
          PopUp { id: popup }
-         onLoaded: {}
      }
 }

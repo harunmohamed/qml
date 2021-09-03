@@ -15,7 +15,7 @@ Rectangle {
     // properties for CAN signals
     property int canTyrePressure: 1
     property int canABSMalfunction: 0
-    property int canTPMS: 0
+    property int canTPMS: 1
     property int canServiceMode: 0
     property int canFrontCollision: 1
 
@@ -106,4 +106,15 @@ Rectangle {
             }
         }
     ]
+    // popup timer
+    Timer {
+       interval: 5000
+       repeat: false
+       running: true
+       onTriggered: {
+           var states = ['tpms', 'frontcollision']
+           var nextIndex = (states.indexOf(popupContainer.state) + 1) % states.length
+           popupContainer.state = states[nextIndex]
+       }
+    }
 }
