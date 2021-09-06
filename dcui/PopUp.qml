@@ -1,6 +1,7 @@
 import QtQuick 2.9
 
-// popup container
+// POPUP CONTAINER: contains the whole popup component to be imported to other screens.
+// Predefined positioning for the eco and sport mode screens. define x = 135 and y = 320 for the wake up screen and mouflon mode screens
 Rectangle {
     id: popupContainer
     border.color: state == '' ? 'transparent' : '#cccccc'
@@ -12,24 +13,24 @@ Rectangle {
     border.width: 2
     radius: 20
 
-    // properties for CAN signals
-    property int canTyrePressure: 0
-    property int canABSMalfunction: 0
+    // CAN SIGNALS: properties for CAN signals. Signals will be dynamically received and defined in other screens
+    property int canTyrePressure: 1
+    property int canABSMalfunction: 1
     property int canTPMS: 1
-    property int canServiceMode: 0
-    property int canFrontCollision: 0
+    property int canServiceMode: 1
+    property int canFrontCollision: 1
 
-    // properties for popup component: image, title and message
+    // POPUP PROPERTIES: All 3 prooperties for the popUpContainer; popUpIndicator, popUpTitle and popUpMessage
     property alias popUpIndicator : pindicator.source
     property alias popUpTitle : ptitle.text
     property alias popUpMessage : pmessage.text
 
-    // font loader
+    // FONT LOADER: Loading popup fonts;  Orbitron-Medium for popUpTitle and Futura-Book for popUpMessage
     FontLoader {id: titleFont; source: "font/orbitron-medium.ttf"}
     FontLoader {id: textFont; source: "font/futura-book-bt.ttf"}
 
 
-    // popup image
+    // POPUP IMAGE: Contains Popup Icon with (66x66) dimensions
     Image {
             id: pindicator
             x: 49
@@ -38,10 +39,10 @@ Rectangle {
             height: 66
             verticalAlignment: parent.verticalCenter
     }
-    // popup text contianer
+    // POPUP MESSAGES CONTAINER: containes alignment rules for popUpTitle and popUpMessage
     Rectangle {
         id: messages
-        // popup title
+        // POPUP TITLE
         Text {
             id: ptitle
             y: 15
@@ -52,7 +53,7 @@ Rectangle {
             anchors.leftMargin: 125
             anchors.left: messages.left
         }
-        // popup message
+        // POPUP MESSAGE
         Text {
             id: pmessage
             y: 40
@@ -64,7 +65,7 @@ Rectangle {
         }
 
      }
-    // popup states
+    // POPUP STATES: images, titles and messages displayed when a popup is triggered by a CAN Signal
     states: [
         State {
             name: 'frontcollision'
@@ -92,7 +93,7 @@ Rectangle {
             PropertyChanges{target: popupContainer; popUpIndicator: "images/tyre.png"; popUpTitle : "Tyre Pressure Warning"; popUpMessage : "Check Tyre Pressure";}
         }
     ]
-    // popup transitions
+    // POPUP TRANSITIONS: Sequential Animation to load current popup. Each popup's opacity is eased in an out for 2 seconds each and paused for 1 second
     transitions: [
         Transition {
             SequentialAnimation {
@@ -100,12 +101,13 @@ Rectangle {
                 PauseAnimation {duration: 1000}
                 NumberAnimation {target: popupContainer; properties: 'opacity'; from: 1.0; to: 0.0; duration: 2000; easing.type: Easing.InOutQuad}
             }
+            // STATE UPDATE SCRIPT: Update the state of the popup once the current state has finished running
             onRunningChanged: {
-                if ((canTyrePressure == 1) && (!running)) {state = 'tyrepressure'; canTyrePressure = 0;}
-                if ((canABSMalfunction == 1) && (!running)) {state = 'absmalfunction'; canABSMalfunction = 0;}
-                if ((canTPMS == 1) && (!running)) {state = 'tpms'; canTPMS = 0;}
-                if ((canServiceMode == 1) && (!running)) {state = 'servicemode'; canServiceMode = 0;}
-                if ((canFrontCollision == 1) && (!running)) {state = 'frontcollision'; canFrontCollision = 0;}
+                if ((canTyrePressure == 1) && (!running)) {state = 'tyrepressure'; canTyrePressure = 0}
+                if ((canABSMalfunction == 1) && (!running)) {state = 'absmalfunction'; canABSMalfunction = 0}
+                if ((canTPMS == 1) && (!running)) {state = 'tpms'; canTPMS = 0}
+                if ((canServiceMode == 1) && (!running)) {state = 'servicemode'; canServiceMode = 0}
+                if ((canFrontCollision == 1) && (!running)) {state = 'frontcollision'; canFrontCollision = 0}
             }
         }
     ]

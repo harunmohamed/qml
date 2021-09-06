@@ -8,12 +8,12 @@ Rectangle {
     // background image
     Image {
         id: driveScreen
-        source: "images/driveScreen.png"
+        source: "images/accessoryScreen.png"
         width: root.width;
         height: root.height
         fillMode: Image.PreserveAspectFit
     }
 
      // This little component loads all the popups we'll ever need
-     PopUp {}
+     PopUp { x: 135;y: 319}
 }
