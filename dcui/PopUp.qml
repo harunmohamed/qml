@@ -13,9 +13,9 @@ Rectangle {
     radius: 20
 
     // properties for CAN signals
-    property int canTyrePressure: 1
+    property int canTyrePressure: 0
     property int canABSMalfunction: 0
-    property int canTPMS: 1
+    property int canTPMS: 0
     property int canServiceMode: 0
     property int canFrontCollision: 1
 
@@ -104,17 +104,13 @@ Rectangle {
                 PauseAnimation {duration: 1000}
                 NumberAnimation {target: popupContainer; properties: 'opacity'; from: 1.0; to: 0.0; duration: 2000; easing.type: Easing.InOutQuad}
             }
+            onRunningChanged: {
+                if ((canTyrePressure == 1) && (!running)) {state = 'tyrepressure'; canTyrePressure = 0;}
+                if ((canABSMalfunction == 1) && (!running)) {state = 'absmalfunction'; canABSMalfunction = 0;}
+                if ((canTPMS == 1) && (!running)) {state = 'tpms'; canTPMS = 0;}
+                if ((canServiceMode == 1) && (!running)) {state = 'servicemode'; canServiceMode = 0;}
+                if ((canFrontCollision == 1) && (!running)) {state = 'frontcollision'; canFrontCollision = 0;}
+            }
         }
     ]
-    // popup timer
-    Timer {
-       interval: 5000
-       repeat: false
-       running: true
-       onTriggered: {
-           var states = ['tpms', 'frontcollision']
-           var nextIndex = (states.indexOf(popupContainer.state) + 1) % states.length
-           popupContainer.state = states[nextIndex]
-       }
-    }
 }
