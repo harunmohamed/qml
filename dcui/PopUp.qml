@@ -3,7 +3,7 @@ import QtQuick 2.9
 // popup container
 Rectangle {
     id: popupContainer
-    border.color: '#cccccc'
+    border.color: state == '' ? 'transparent' : '#cccccc'
     width: 423
     height: 82
     x: 749
@@ -15,9 +15,9 @@ Rectangle {
     // properties for CAN signals
     property int canTyrePressure: 0
     property int canABSMalfunction: 0
-    property int canTPMS: 0
+    property int canTPMS: 1
     property int canServiceMode: 0
-    property int canFrontCollision: 1
+    property int canFrontCollision: 0
 
     // properties for popup component: image, title and message
     property alias popUpIndicator : pindicator.source
@@ -67,13 +67,9 @@ Rectangle {
     // popup states
     states: [
         State {
-            name: 'emptystate'
-            PropertyChanges{target: popupContainer; border.color : 'transparent'}
-        },
-        State {
-            name: 'tyrepressure'
-            when: canTyrePressure == 1
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/tyre.png"; popUpTitle : "Tyre Pressure Warning"; popUpMessage : "Check Tyre Pressure";}
+            name: 'frontcollision'
+            when: canFrontCollision == 1
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/frontcollision.png"; popUpTitle : "Front Collision Warning"; popUpMessage : "Front Collision Imminent: Slow Down";}
         },
         State {
             name: 'absmalfunction'
@@ -91,9 +87,9 @@ Rectangle {
             PropertyChanges{target: popupContainer; popUpIndicator: "images/servicemode.png"; popUpTitle : "Service Mode Active"; popUpMessage : "Service mode has been activated";}
         },
         State {
-            name: 'frontcollision'
-            when: canFrontCollision == 1
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/frontcollision.png"; popUpTitle : "Front Collision Warning"; popUpMessage : "Front Collision Imminent: Slow Down";}
+            name: 'tyrepressure'
+            when: canTyrePressure == 1
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/tyre.png"; popUpTitle : "Tyre Pressure Warning"; popUpMessage : "Check Tyre Pressure";}
         }
     ]
     // popup transitions

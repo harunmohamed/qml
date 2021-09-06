@@ -3,7 +3,6 @@ import QtQuick 2.9
 Rectangle {
     width: 1920; height: 720
     color: '#000000'
-    state: "emptystate"
     id: root
 
     // background image
@@ -15,9 +14,6 @@ Rectangle {
         fillMode: Image.PreserveAspectFit
     }
 
-     // add popup components into this item as they come
-     Loader {
-         id: loader
-         PopUp { id: popup }
-     }
+     // This little component loads all the popups w'ell ever need
+     PopUp {}
 }
