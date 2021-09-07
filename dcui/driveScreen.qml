@@ -15,5 +15,6 @@ Rectangle {
     }
 
      // This little component loads all the popups we'll ever need
-     PopUp {}
+     PopUp {id: popup}
+
 }
