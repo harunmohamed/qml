@@ -16,13 +16,13 @@ Rectangle {
     // CAN SIGNALS: properties for CAN signals. Signals will be dynamically received and defined in other screens
     property int canTyrePressure: 1
     property int canABSMalfunction: 1
-    property int canTPMS: 0
-    property int canServiceMode: 0
+    property int canTPMS: 1
+    property int canServiceMode: 1
     property int canFrontCollision: 1
 
     // POPUP PROPERTIES: All 3 properties for the popUpContainer; popUpIndicator, popUpTitle and popUpMessage
     property alias popUpIndicator : pindicator.source
-    property alias popUpTitle : ptitle.text
+    //property alias popUpTitle : ptitle.text
     property alias popUpMessage : pmessage.text
 
     // FONT LOADER: Loading popup fonts;  Orbitron-Medium for popUpTitle and Futura-Book for popUpMessage
@@ -32,216 +32,216 @@ Rectangle {
     // POPUP IMAGE: Contains Popup Icon with (66x66) dimensions
     Image {
             id: pindicator
-            x: 49
+            x: 30
             y: 8
-            width: 66
-            height: 66
+            width: 60
+            height: 60
             verticalAlignment: parent.verticalCenter
     }
-    // POPUP MESSAGES CONTAINER: containes alignment rules for popUpTitle and popUpMessage
+    // POPUP MESSAGES CONTAINER: contains alignment rules for popUpTitle and popUpMessage
     Rectangle {
         id: messages
         // POPUP TITLE
-        Text {
-            id: ptitle
-            y: 15
-            color: '#cccccc'
-            font.family: titleFont.name
-            font.capitalization: Font.AllUppercase
-            font.pixelSize: 17
-            anchors.leftMargin: 125
-            anchors.left: messages.left
-        }
+//        Text {
+//            id: ptitle
+//            y: 15
+//            color: '#cccccc'
+//            font.family: titleFont.name
+//            font.capitalization: Font.AllUppercase
+//            font.pixelSize: 17
+//            anchors.leftMargin: 125
+//            anchors.left: messages.left
+//        }
         // POPUP MESSAGE
         Text {
             id: pmessage
-            y: 40
+            y: 30
             color: '#cccccc'
             font.family: textFont.name
             font.pixelSize: 18
-            anchors.leftMargin: 125
+            anchors.leftMargin: 100
             anchors.left: messages.left
         }
 
      }
-    // POPUP STATES: images, titles and messages displayed when a popup is triggered by a CAN Signal
+    // POPUP STATES: images/popups, titles and messages displayed when a popup is triggered by a CAN Signal
     states: [
         // HYDRAULIC SERVICE BRAKES
         State {
             name: 'lowbrakefluid'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/lowbrakefluid.png"; popUpTitle : "Low Brake Fluid"; popUpMessage : "Brake fluid level is low";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/brakefailure.png"; popUpTitle : "Low Brake Fluid"; popUpMessage : "Brake fluid level is low";}
         },
         State {
             name: 'brakepadwear'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/brakefailure.png"; popUpTitle : "Brake Pad Wear"; popUpMessage : "Brake Pad is worn out";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/brakefailure.png"; popUpTitle : "Brake Pad Wear"; popUpMessage : "Brake Pad is worn out";}
         },
         State {
             name: 'hsbmalfunction'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/brakefailure.png"; popUpTitle : "HSB Malfunction"; popUpMessage : "Hydraulic Service Brakes Malfunction";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/brakefailure.png"; popUpTitle : "HSB Malfunction"; popUpMessage : "Hydraulic Service Brakes Malfunction";}
         },
         // ABS
         State {
             name: 'absmalfunction'
             when: canABSMalfunction == 1
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/absmalfunction.png"; popUpTitle : "ABS Malfunction"; popUpMessage : "Anti-Lock Braking System Failure";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/absmalfunction.png"; popUpTitle : "ABS Malfunction"; popUpMessage : "Anti-Lock Braking System Failure";}
         },
         // ESP
         State {
             name: 'unexpecteddrift'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/unexpecteddrift.png"; popUpTitle : "Unexpected Drift"; popUpMessage : "Take over steering!";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/unexpecteddrift.png"; popUpTitle : "Unexpected Drift"; popUpMessage : "Take over steering!";}
         },
         State {
             name: 'espoff'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/espoff.png"; popUpTitle : "ESP Off Warning"; popUpMessage : "Electronic Stability Program Off";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/espoff.png"; popUpTitle : "ESP Off Warning"; popUpMessage : "Electronic Stability Program Off";}
         },
         State {
             name: 'espmalfunction'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/espmalfunction.png"; popUpTitle : "ESP Malfunction"; popUpMessage : "Electronic Stability Program Malfunction";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/espmalfunction.png"; popUpTitle : "ESP Malfunction"; popUpMessage : "Electronic Stability Program Malfunction";}
         },
         // DRIVER & PASSENGER FRONT AIRBAGS, INCLUDES MANUAL PASSENFER AIRBAG DEACTIVATION FUNCTION
         State {
             name: 'defectiveairbag'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/defectiveairbag.png"; popUpTitle : "Defective Airbag"; popUpMessage : "One or more airbags is defective";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/defectiveairbag.png"; popUpTitle : "Defective Airbag"; popUpMessage : "One or more airbags is defective";}
         },
         // THREE-POINT RETRACTABLE SEAT BELT WARNINGS
         State {
             name: 'fastenfrontbelt'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/fastenseatbelt.png"; popUpTitle : "Fasten Front Belt"; popUpMessage : "Fasten front seat belt";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/fastenseatbelt.png"; popUpTitle : "Fasten Front Belt"; popUpMessage : "Fasten front seat belt";}
         },
         State {
             name: 'fastenrearbelt'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/fastenseatbelt.png"; popUpTitle : "Fasten Rear Belt"; popUpMessage : "Rear Passengers should fasten seatbelts";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/fastenseatbelt.png"; popUpTitle : "Fasten Rear Belt"; popUpMessage : "Rear Passengers should fasten seatbelts";}
         },
         // TYRE PRESSURE MONITORING SYSTEM
         State {
             name: 'tyrepressure'
             when: canTyrePressure == 1
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/tyre.png"; popUpTitle : "Adjust Tyre Pressure"; popUpMessage : "Tyre pressure is below safe levels";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/tyre.png"; popUpTitle : "Adjust Tyre Pressure"; popUpMessage : "Tyre pressure is below safe levels";}
         },
         State {
             name: 'tpms'
             when: canTPMS == 1
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/tyre.png"; popUpTitle : "TPMS Malfunction"; popUpMessage : "Tyre Pressure Monitoring System Malfunction";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/tyre.png"; popUpTitle : "TPMS Malfunction"; popUpMessage : "Tyre Pressure Monitoring System Malfunction";}
         },
         // LOW VOLTAGE BATTERY LIFETIME & BATTERY WARNINGS
         State {
             name: 'lowsoh'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/lowsoh.png"; popUpTitle : "Low State of Health"; popUpMessage : "Low voltage battery health below 40%";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/lowsoh.png"; popUpTitle : "Low State of Health"; popUpMessage : "Low voltage battery health below 40%";}
         },
         State {
             name: 'lowsoc'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/lowsoc.png"; popUpTitle : "Low State of Charge"; popUpMessage : "Optimal Battery Capacity is below 40%";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/lowsoc.png"; popUpTitle : "Low State of Charge"; popUpMessage : "Optimal Battery Capacity is below 40%";}
         },
         State {
             name: 'notcharging'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/notcharging.png"; popUpTitle : "Battery Not Charging"; popUpMessage : "Discharge current is higher than battery voltage";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/notcharging.png"; popUpTitle : "Battery Not Charging"; popUpMessage : "Discharge current is higher than battery voltage";}
         },
         // HV INTERLOCK
         State {
             name: 'servicemode'
             when: canServiceMode == 1
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/service.png"; popUpTitle : "Service Mode Active"; popUpMessage : "Service mode has been activated";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/service.png"; popUpTitle : "Service Mode Active"; popUpMessage : "Service mode has been activated";}
         },
         // ADVANCED EMERGENCY BRAKING SYSTEM & FRONT COLLISION WARNING
         State {
             name: 'frontcollision'
             when: canFrontCollision == 1
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/frontcollision.png"; popUpTitle : "Front Collision Warning"; popUpMessage : "Front Collision Imminent: Slow Down";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/frontcollision.png"; popUpTitle : "Front Collision Warning"; popUpMessage : "Front Collision Imminent: Slow Down";}
         },
         State {
             name: 'aebmalfunction'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/brakefailure.png"; popUpTitle : "AEB Malfunction"; popUpMessage : "Autonomous Braking System Malfunction";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/brakefailure.png"; popUpTitle : "AEB Malfunction"; popUpMessage : "Autonomous Braking System Malfunction";}
         },
         // LANE DEPARTURE WARNING & EMERGENCY LANE KEEPING ASSIST SYSTEM
         State {
             name: 'rightlanedeparture'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/lanedeparture.png"; popUpTitle : "Right Lane Departure"; popUpMessage : "Right lane departure without indicating";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/lanedeparture.png"; popUpTitle : "Right Lane Departure"; popUpMessage : "Right lane departure without indicating";}
         },
         State {
             name: 'leftlanedeparture'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/lanedeparture.png"; popUpTitle : "Left Lane Departure"; popUpMessage : "Left lane departure without indicating";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/lanedeparture.png"; popUpTitle : "Left Lane Departure"; popUpMessage : "Left lane departure without indicating";}
         },
         State {
             name: 'laneassistsystemfailure'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/lanedeparture.png"; popUpTitle : "Lane Assist System Failure"; popUpMessage : "Lane Assist System has been deactivated";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/lanedeparture.png"; popUpTitle : "Lane Assist System Failure"; popUpMessage : "Lane Assist System has been deactivated";}
         },
         // DRIVER DROWSINESS & ATENTION SYSTEM
         State {
             name: 'ddactivation'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/ddactivation.png"; popUpTitle : "Drowsiness Detection Activated"; popUpMessage : "Attention Assist: Take a break";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/ddactivation.png"; popUpTitle : "Drowsiness Detection Activated"; popUpMessage : "Attention Assist: Take a break";}
         },
         State {
             name: 'ddmalfunction'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/ddmalfunction.png"; popUpTitle : "Drowsiness Detection Malfunction"; popUpMessage : "Driver Drowsiness Detection System Failure";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/ddmalfunction.png"; popUpTitle : "Drowsiness Detection Malfunction"; popUpMessage : "Driver Drowsiness Detection System Failure";}
         },
         // PASSIVE ENTRY
         State {
             name: 'keyfobundetected'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/keyfoberror.png"; popUpTitle : "Key Fob Not Detected"; popUpMessage : "Key Fob is outside detection radius";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/keyfoberror.png"; popUpTitle : "Key Fob Not Detected"; popUpMessage : "Key Fob is outside detection radius";}
         },
         State {
             name: 'keyfobleft'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/keyfoberror.png"; popUpTitle : "Key Fob Left"; popUpMessage : "Key Fob left inside the vehicle";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/keyfoberror.png"; popUpTitle : "Key Fob Left"; popUpMessage : "Key Fob left inside the vehicle";}
         },
         State {
             name: 'unauthorizedkeyfob'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/keyfoberror.png"; popUpTitle : "Unauthorized Key Fob"; popUpMessage : "Key Fob not authorized to initiate ignition";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/keyfoberror.png"; popUpTitle : "Unauthorized Key Fob"; popUpMessage : "Key Fob not authorized to initiate ignition";}
         },
         State {
             name: 'lowbatterykeyfob'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/keyfoberror.png"; popUpTitle : "Low Key Fob Battery"; popUpMessage : "Key Fob battery is low";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/keyfoberror.png"; popUpTitle : "Low Key Fob Battery"; popUpMessage : "Key Fob battery is low";}
         },
         // SPEED SENSITIVE ELECTRIC POWER STEERING
         State {
             name: 'epsmalfunction'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/epsmalfunction.png"; popUpTitle : "EPS Malfunction"; popUpMessage : "Low Steering Fluid Level";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/epsmalfunction.png"; popUpTitle : "EPS Malfunction"; popUpMessage : "Low Steering Fluid Level";}
         },
         // DRIVING MODES
         State {
             name: 'fullthrottlewarning'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/fullthrottlewarning.png"; popUpTitle : "Full Throttle Warning"; popUpMessage : "Relax your foot from the accelerator";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/fullthrottlewarning.png"; popUpTitle : "Full Throttle Warning"; popUpMessage : "Relax your foot from the accelerator";}
         },
         // GUNSEL SMOOTH DRIVE
         State {
             name: 'lowpoweroroverheating'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/lowpoweroroverheating.png"; popUpTitle : "Low Power/Overheating"; popUpMessage : "Vehicle has low power or is overheating";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/lowpoweroroverheating.png"; popUpTitle : "Low Power/Overheating"; popUpMessage : "Vehicle has low power or is overheating";}
         },
         // INTELLIGENT SPEED ASSISTANCE
         State {
             name: 'isamalfunction'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/lanedeparture.png"; popUpTitle : "ISA Malfunction"; popUpMessage : "Intelligent Speed Assistance Malfunction";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/lanedeparture.png"; popUpTitle : "ISA Malfunction"; popUpMessage : "Intelligent Speed Assistance Malfunction";}
         },
         // ELECTRIC PARKING ASSISTANCE
         State {
             name: 'epbmalfunction'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/epbmalfunction.png"; popUpTitle : "EPB Malfunction"; popUpMessage : "Electric Park Brake Malfunction";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/epbmalfunction.png"; popUpTitle : "EPB Malfunction"; popUpMessage : "Electric Park Brake Malfunction";}
         },
         // ON/OFF-BOARD DIAGNOSTICS CAPABILITY
         State {
             name: 'periodicservicereminder'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/service.png"; popUpTitle : "Periodic Service Reminder"; popUpMessage : "Reminder to service vehicle after 5000KM run";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/service.png"; popUpTitle : "Periodic Service Reminder"; popUpMessage : "Reminder to service vehicle after 5000KM run";}
         },
         // GUNSEL THERMAL MAANGEMENT SYSTEM
         State {
             name: 'coolantlevelwarning'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/coolanttemperaturewarning.png"; popUpTitle : "Coolant Level Warning"; popUpMessage : "Coolant fluid is low";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/coolanttemperaturewarning.png"; popUpTitle : "Coolant Level Warning"; popUpMessage : "Coolant fluid is low";}
         },
         State {
             name: 'coolanttemperaturewarning'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/coolanttemperaturewarning.png"; popUpTitle : "Coolant Temeprature Warning"; popUpMessage : "Coolant Temperature is above safe levels";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/coolanttemperaturewarning.png"; popUpTitle : "Coolant Temeprature Warning"; popUpMessage : "Coolant Temperature is above safe levels";}
         },
         State {
             name: 'batteryhightemp'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/lowpoweroroverheating.png"; popUpTitle : "Battery High Temperature"; popUpMessage : "Battery temperature is above safe levels";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/lowpoweroroverheating.png"; popUpTitle : "Battery High Temperature"; popUpMessage : "Battery temperature is above safe levels";}
         },
         State {
             name: 'batterylowtemp'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/batterylowtemp.png"; popUpTitle : "Battery Low Temperature"; popUpMessage : "Battery Temperature is below safe levels";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/batterylowtemp.png"; popUpTitle : "Battery Low Temperature"; popUpMessage : "Battery Temperature is below safe levels";}
         },
         // 11Kw ON-BOARD CHARGER WITH CCS2 DC FAST CHARGING INTERFACE
         State {
             name: 'chargeinterruption'
-            PropertyChanges{target: popupContainer; popUpIndicator: "images/chargeinterruption.png"; popUpTitle : "Charge Interruption"; popUpMessage : "Charging has encountered a fault";}
+            PropertyChanges{target: popupContainer; popUpIndicator: "images/popups/chargeinterruption.png"; popUpTitle : "Charge Interruption"; popUpMessage : "Charging has encountered a fault";}
         }
     ]
     // POPUP TRANSITIONS: Sequential Animation to load current popup. Each popup's opacity is eased in an out for 2 seconds each and paused for 1 second
