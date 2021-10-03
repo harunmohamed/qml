@@ -1,3 +1,10 @@
+<p align="center">
+  <a href="https://www.gunsel.com.tr/">
+    <img src="https://bit.ly/3uCQfM5" alt="Günsel Logo" width="400" height="100">
+  </a>
+</p>
+
+
 # The DRY KISS Coding Convention
 
 QML Coding Guidelines for Günsel DIC Team
